@@ -1,0 +1,20 @@
+Source: pyneo-pybankd
+Section: python
+Priority: extra
+Maintainer: Johannes Schauer <josch@pyneo.org>
+Build-Depends: debhelper (>= 7), python-support (>= 0.5.3), python, python2.5-dev, python2.6-dev, cython, libgwenhywfar47-dev, libaqbanking29-dev
+Standards-Version: 3.9.1
+Homepage: http://pyneo.org
+
+Package: pyneo-pybankd
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, pyneo-pyneod (>= 1.23)
+Description: pyneo mobile stack: daemon module for banking
+ this is the separated bank module for pyneod. it requires aqbanking installed
+ and successful configured. it does not contain any gui to do configuration and
+ does not contain other code than to get transactions and balance from your
+ bankaccounts.
+ .
+ if your setup of aqbanking is finished successfully pybankd will request
+ transactions from your bank at a regular basis, put these into the database and
+ fire D-Bus signals for each new transaction.

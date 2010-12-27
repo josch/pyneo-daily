@@ -1,0 +1,13 @@
+Source: python-ijon
+Section: python
+Priority: extra
+Maintainer: Johannes Schauer <josch@pyneo.org>
+Build-Depends: debhelper (>= 7), python-support (>= 0.5.3), python
+Standards-Version: 3.9.1
+Homepage: http://pyneo.org
+
+Package: python-ijon
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}, python-dbus, python-ecore, python-edbus
+Description: ijon
+ meaningful description.

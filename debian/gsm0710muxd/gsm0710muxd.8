@@ -1,0 +1,103 @@
+.\" -*- nroff -*-
+.TH GSM0710MUXD 8 "23 June 2009" "gsm0710muxd"
+.SH NAME
+gsm0710muxd \- a gsm 07.10 muxer
+.SH SYNOPSIS
+.B gsm0710muxd [options]
+
+.SH DESCRIPTION
+.B 
+A gsm muxer is needed to keep a ppp/gprs up & running while sms and
+calls are still signaled on another channel. Some modems even support
+using gprs while a call is active, others suspend gprs during calls.
+
+The muxer supports various options to change the behaviour for
+different modems. Use -h to see a brief help screen.
+
+All logging is done through syslog, see the syslog for errors and
+warnings.
+
+.SH "COMMAND\-LINE OPTIONS"
+
+.TP 0.5i
+.B -d
+Fork, get a daemon (default: no)
+
+.TP 0.5i
+.B -v
+Verboser logging (give twice for even more verbose)
+
+.TP 0.5i
+.B -s <serial port name>
+Serial port device to connect to (default: /dev/modem)
+
+.TP 0.5i
+.B -t <timeout>
+reset modem after this number of seconds of silence (default: 0)
+
+.TP 0.5i
+.B -P <pin-code>
+PIN code to unlock SIM (default: <not set>). This is normally not
+needed but some modems need the pin before enabling the muxer mode.
+
+.TP 0.5i
+.B -p <number>
+use ping and reset modem after this number of unanswered pings (default: 0)
+
+.TP 0.5i
+.B -l <filename>
+set logfile name (default: <not set>)
+
+.TP 0.5i
+.B -x <dir>
+power managment base dir (default: <not set>)
+
+.TP 0.5i
+.B -a <mode>
+additional_functionality (default: 0). This is a bit-set enabling
+quirks for different modem. The quirks are: WAKEUP_WITH_SYSFS = 1,
+WAKEUP_WITH_SEQUENCE = 2, SIEMENS_C35 = 4, ENFORA = 8, SHORT_INIT =
+16.
+
+.TP 0.5i
+.B -b <baudrate>
+muxer-mode baudrate (default: 115200)
+
+.TP 0.5i
+.B -B <baudrate>
+serial port baudrate (default: 115200)
+
+.TP 0.5i
+.B -m <mode>
+Mode (basic, advanced) (default: advanced)
+
+.TP 0.5i
+.B -f <framsize>
+Frame size (default: 64)
+
+.TP 0.5i
+.B -h
+Show a help message and display current settings.
+
+
+.SH HISTORY
+
+The name 'gsm0710muxd' was choosen because the gsm specs describe this
+method in document 7.10.
+
+.SH BUGS/LIMITATIONS
+
+.B gsm0710muxd
+There may accure bufferoverruns and thus missing data between muxer
+and client under certain situations.
+
+Some settings could be determined by a AT-command at startup. This wouldn't be
+much reliable because modems often lie so i did not invest to much work in
+this.
+
+.SH AUTHOR
+M. Dietrich <mdt@pyneo.org>
+
+.SH SEE ALSO
+ptsname(3)
+

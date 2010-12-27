@@ -1,0 +1,22 @@
+Source: pyneo-pyneod
+Section: python
+Priority: extra
+Maintainer: Johannes Schauer <josch@pyneo.org>
+Build-Depends: debhelper (>= 7.0.50~), python-support (>= 0.5.3), python
+Standards-Version: 3.9.1
+Homepage: http://pyneo.org
+
+Package: pyneo-pyneod
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}, gsm0710muxd (>= 1.13), python-simplejson, python-crypto, python-dbus, python-pyneo (>= 1.26), python-gobject, python-gdbm, python-serial, python-gst0.10, gstreamer0.10-plugins-base, ppp, bluez, python-feedparser
+Recommends: gstreamer0.10-plugins-good, youtube-dl
+Description: pyneo mobile stack: daemon suite
+ The functionality of pyneo is put into daemons reachable via D-Bus.
+ Anything, even http-requests are a service which can be triggered by a
+ D-Bus call. All special requirements by mobile devices are met here.
+ .
+ The list currently include services for GSM (call, SMS, pb and cb),
+ GPS (NMEA and u-blox), map (with maps from OSM, Google and Yahoo),
+ Google location lookup by cell id, audio (for MP3 playback and
+ ringtones), traffic map (currently only Germany) rail timetable
+ (Europe), Hot or Not and more.

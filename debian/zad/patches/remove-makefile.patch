@@ -1,0 +1,49 @@
+--- a/Makefile
++++ /dev/null
+@@ -1,46 +0,0 @@
+-#!/usr/bin/env make -f
+-#HOST=murphy
+-#HOST=gta01
+-#HOST=gta02
+-HOST=metab.home.emdete.de
+-
+-.PHONY: all docs clean dbg run
+-all:
+-	./setup.py bdist
+-
+-run:
+-	DISPLAY=:1 \
+-	PYTHONPATH=mockup:. \
+-	python -u ./bin/zad data/zad.ini
+-
+-dbg: clean
+-	rsync --verbose --archive --delete plugins/. root@$(HOST):/usr/share/zad/.
+-
+-clean:
+-
+-docs: docs/index.html
+-
+-docs/index.html: Makefile
+-	mkdir -p docs
+-	LD_LIBRARY_PATH=$(EPATH)/lib \
+-	PYTHONPATH=$(EPATH)/lib/python2.6/site-packages:../../pyneo/python-pyneo:../../pyneo/python-pyneopads:../ijon/src \
+-	epydoc \
+-		--css=data/epydoc.css \
+-		--debug \
+-		--docformat=restructuredtext \
+-		--graph=classtree \
+-		--graph-font-size=32 \
+-		--graph-font='Vera' \
+-		--html \
+-		--include-log \
+-		--name='zad - documentation' \
+-		--navlink=Home \
+-		--no-imports \
+-		--no-private \
+-		--no-sourcecode \
+-		--output=docs \
+-		--quiet \
+-		--simple-term \
+-		--url=http://pyneo.org/ \
+-		plugins/dashboard/*.py
+-

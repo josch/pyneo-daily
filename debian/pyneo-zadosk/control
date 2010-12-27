@@ -1,0 +1,13 @@
+Source: pyneo-zadosk
+Section: python
+Priority: extra
+Maintainer: Johannes Schauer <josch@pyneo.org>
+Build-Depends: debhelper (>= 7), python-support (>= 0.5.3), python, python-dev, cython, libfakekey-dev, libx11-dev
+Standards-Version: 3.9.1
+Homepage: http://pyneo.org
+
+Package: pyneo-zadosk
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, python-evas, python-ecore, python-simplejson
+Description: short description
+ long description with mor

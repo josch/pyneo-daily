@@ -1,0 +1,13 @@
+Source: zad
+Section: python
+Priority: extra
+Maintainer: Johannes Schauer <josch@pyneo.org>
+Build-Depends: debhelper (>= 7), python-support (>= 0.5.3), python
+Standards-Version: 3.9.1
+Homepage: http://pyneo.org
+
+Package: zad
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}, python-ecore, python-evas, python-ijon, python-pyneo
+Description: a short description
+ a more lengthy description

@@ -1,0 +1,18 @@
+Source: pyneo-resolvconf
+Section: net
+Priority: optional
+Maintainer: Johannes Schauer <josch@pyneo.org>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.9.1
+Homepage: http://pyneo.org
+
+Package: pyneo-resolvconf
+Architecture: all
+Depends: ${misc:Depends}, dnsmasq, dhcpcd5
+Recommends: udev, wpasupplicant, vpnc, ppp
+Conflicts: ifupdown, netplug, dhcp3-client, dhcdbd, ifplugd, resolvconf, avahi-daemon, libnss-mdns, network-manager, wicd, connman, wireless-tools, isc-dhcp-client, pump, udhcpc
+Description: nameserver update script
+ this resolvconf-replacement does update the nameserver in a running
+ dnsmasq ns-proxy via D-Bus. there is no symlinking, moving or rewriting
+ of files and no polling. Because of the simplicity and the using of
+ signaling via D-Bus this is incredible fast and reliable.

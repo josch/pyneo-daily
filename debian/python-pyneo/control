@@ -1,0 +1,14 @@
+Source: python-pyneo
+Section: python
+Priority: extra
+Maintainer: Johannes Schauer <josch@pyneo.org>
+Build-Depends: debhelper (>= 7), python-support (>= 0.5.3), python
+Standards-Version: 3.9.1
+Homepage: http://pyneo.org
+
+Package: python-pyneo
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}, python-simplejson, python-crypto, python-dbus, python-ctypes, python-sqlite
+Description: pyneo mobile stack: basis libraries
+ Helper modules to support development for and with pyneo in Python. It
+ contains common functions, modules and constants.

@@ -1,0 +1,29 @@
+--- a/Makefile
++++ /dev/null
+@@ -1,26 +0,0 @@
+-#!/usr/bin/env make -f
+-#HOST=murphy
+-#HOST=gta01
+-#HOST=gta02
+-HOST=metab
+-#HOST=ben
+-ARCH=`uname -m`
+-PYTHON_VERSION=2.6
+-
+-.PHONY: dbg all run clean
+-
+-all: build/lib.linux-$(ARCH)-$(PYTHON_VERSION)/fakekey.so
+-
+-dbg: all
+-	rsync --verbose --archive --delete ../zadosk mdt@$(HOST):pyneo/.
+-
+-run: all
+-	PYTHONPATH=build/lib.linux-$(ARCH)-$(PYTHON_VERSION) \
+-	python$(PYTHON_VERSION) -u pyneo/zad/osk/__init__.py resources/ organic.json
+-
+-clean:
+-	rm -rf *.c *.o *.so core build
+-
+-build/lib.linux-$(ARCH)-$(PYTHON_VERSION)/fakekey.so: fakekey.pyx Makefile setup.py
+-	python$(PYTHON_VERSION) setup.py build
+-

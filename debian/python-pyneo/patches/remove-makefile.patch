@@ -1,0 +1,58 @@
+Index: python-pyneo-1.32/Makefile
+===================================================================
+--- python-pyneo-1.32.orig/Makefile	2010-08-24 19:50:28.000000000 +0000
++++ /dev/null	1970-01-01 00:00:00.000000000 +0000
+@@ -1,53 +0,0 @@
+-#!/usr/bin/env make -f
+-#HOST=murphy
+-#HOST=gta01
+-HOST=gta02
+-
+-.PHONY: all
+-all: clean
+-	./setup.py bdist
+-
+-.PHONY: run
+-run:
+-	PYTHONPATH=. python pyhttpd.py
+-
+-.PHONY: dbg
+-dbg: clean
+-	rsync --verbose --archive pyneo/. root@$(HOST):/usr/share/pyshared/pyneo/.
+-
+-.PHONY: clean
+-clean:
+-	for n in `cat ../.gitignore`; do \
+-		if echo $$n | grep -q /; then \
+-			rm -rfv "$$n"; \
+-		else \
+-			find . -name "$$n" | xargs rm -fv; \
+-		fi \
+-	done
+-
+-.PHONY: docs
+-docs: docs/index.html
+-
+-docs/index.html: pyneo/**/*.py Makefile
+-	mkdir -p docs
+-	epydoc \
+-		--css=data/epydoc.css \
+-		--debug \
+-		--docformat=restructuredtext \
+-		--graph=classtree \
+-		--graph-font-size=32 \
+-		--graph-font='Vera' \
+-		--html \
+-		--include-log \
+-		--name='pyneo - documentation' \
+-		--navlink=Home \
+-		--no-imports \
+-		--no-private \
+-		--no-sourcecode \
+-		--output=docs \
+-		--quiet \
+-		--simple-term \
+-		--top=pyneo.interfaces \
+-		--url=http://pyneo.org/ \
+-		pyneo
+-

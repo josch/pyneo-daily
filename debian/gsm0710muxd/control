@@ -1,0 +1,17 @@
+Source: gsm0710muxd
+Section: misc
+Priority: extra
+Maintainer: Johannes Schauer <josch@pyneo.org>
+Build-Depends: debhelper (>= 7.0.50~), autotools-dev, libdbus-glib-1-dev, libglib2.0-dev, libdbus-1-dev
+Standards-Version: 3.9.1
+Homepage: http://pyneo.org
+
+Package: gsm0710muxd
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, dbus
+Description: GSM 07.10 Multiplexer
+ pyneo mobile stack: muxer as GSM 07.10 describes.
+ A muxer for gsm modems to allow more than one channel to be used with
+ the modem. Each channel can be used to issue phonecalls, watch signal
+ strength, receiving sms or even doing ppp (gprs) at the same time.
+ Access to the multiplexer is managed via D-Bus.
