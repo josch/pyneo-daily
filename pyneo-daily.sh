@@ -125,12 +125,17 @@ esac
 #                          build source packages                            #
 #############################################################################
 
+# epydial
+git clone git://gitorious.org/epydial/epydial-new.git "$SRC_DIR/epydial"
+
+# gsm0710muxd pyneo-pybankd pyneo-pyneod pyneo-resolvconf python-pyneo zad
 curl http://git.pyneo.org/browse/cgit/pyneo/snapshot/pyneo-HEAD.tar.gz | tar xz
 for src in gsm0710muxd pyneo-pybankd pyneo-pyneod pyneo-resolvconf python-pyneo zad; do # add pyneo-pygsmd?
 	cp -r "pyneo-HEAD/$src" "$SRC_DIR/$src"
 done
 rm -rf pyneo-HEAD
 
+# pyneo-zadthemes pyneo-zadosk pyneo-zadwm python-ijon
 for repo in pyneo-zadthemes pyneo-zadosk pyneo-zadwm python-ijon; do
 	curl http://git.pyneo.org/browse/cgit/$repo/snapshot/$repo-HEAD.tar.gz | tar xz
 	mv "$repo-HEAD" "$SRC_DIR/$repo"
@@ -139,7 +144,7 @@ done
 for pkg in "$SRC_DIR/"*; do
 	PKG="${pkg##*/}" # emulate basename(1)
 	mv "$SRC_DIR/$PKG" "$SRC_DIR/$PKG-$DATENOW"
-	tar --directory "$SRC_DIR" --create --gzip --file "$SRC_DIR/${PKG}_$DATENOW.orig.tar.gz" "$PKG-$DATENOW"
+	tar --exclude-vcs --directory "$SRC_DIR" --create --gzip --file "$SRC_DIR/${PKG}_$DATENOW.orig.tar.gz" "$PKG-$DATENOW"
 	cp -r "$DEB_DIR/$PKG" "$SRC_DIR/$PKG-$DATENOW/debian"
 	DEBEMAIL="josch@pyneo.org" DEBFULLNAME="Johannes Schauer" dch --package "$PKG" --newversion "$DATENOW-$MAINTAINER" \
 		--distribution unstable --empty --changelog "$SRC_DIR/$PKG-$DATENOW/debian/changelog" --create "new nightly build"
