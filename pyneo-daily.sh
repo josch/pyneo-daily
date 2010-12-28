@@ -9,6 +9,13 @@
 #
 # use 2.5G tmpfs
 # mount -t tmpfs -o size=2500M tmpfs /tmp/ramdisk
+#
+# you can also run the script inside a chroot to avoid having to run it as
+# root on your host.
+# sudo cdebootstrap --flavour=minimal sid debian-sid-chrootenv
+# sudo cp pyneo-daily.sh debian-sid-chrootenv/
+# sudo chroot debian-sid-chrootenv/ apt-get install [see above]
+# sudo chroot debian-sid-chrootenv/ /pyneo-daily.sh
 
 PWD="`pwd`"
 SRC_DIR="$PWD/src"
