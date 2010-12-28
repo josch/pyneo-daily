@@ -1,6 +1,12 @@
 #!/bin/sh -e
 
-# use apt-cacher
+# apt-get install qemubuilder cowbuilder git-core dpkg-dev curl bzip2 gzip tar coreutils
+#
+# since a lot of debs will repeatedly be downloaded, run a local apt cache.
+# it will speed things up and go easy on the debian mirrors.
+# apt-get install apt-cacher
+# if you are not using it, adjust the DEBMIRROR line below
+#
 # use 2.5G tmpfs
 # mount -t tmpfs -o size=2500M tmpfs /tmp/ramdisk
 
